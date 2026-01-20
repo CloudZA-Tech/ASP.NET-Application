@@ -1,0 +1,31 @@
+{
+  "applicationName": "RealWorld-Conduit-API",
+  "framework": ".NET Core",
+  "version": "8.0",
+  "architecture": "CQRS-MediatR",
+  "database": {
+    "current": "SQLite",
+    "connectionString": "Filename=realworld.db",
+    "targetSuggestion": "Amazon RDS PostgreSQL"
+  },
+  "dependencies": [
+    "MediatR",
+    "AutoMapper", 
+    "FluentValidation",
+    "EntityFrameworkCore",
+    "Swashbuckle.AspNetCore",
+    "JWT Bearer Authentication"
+  ],
+  "modernizationTargets": {
+    "containerization": "AWS Fargate",
+    "database": "Amazon RDS PostgreSQL",
+    "authentication": "Amazon Cognito",
+    "apiGateway": "Amazon API Gateway",
+    "monitoring": "Amazon CloudWatch",
+    "cicd": "AWS CodePipeline"
+  },
+  "entryPoint": "src/Conduit/Program.cs",
+  "buildCommand": "dotnet build",
+  "testCommand": "dotnet test",
+  "port": 5000
+}

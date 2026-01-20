@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  conduit-api:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DEFAULT_DATABASE_PROVIDER=sqlite
+      - DEFAULT_DATABASE_CONNECTION_STRING=Filename=realworld.db
+    volumes:
+      - ./data:/app/data
