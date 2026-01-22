@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Conduit.Infrastructure;
 using Conduit.Infrastructure.Errors;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace Conduit.Features.Profiles;
 

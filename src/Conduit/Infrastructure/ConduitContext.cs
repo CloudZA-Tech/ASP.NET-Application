@@ -5,17 +5,17 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Conduit.Infrastructure;
 
-public class ConduitContext(DbContextOptions options) : DbContext(options)
+public class ConduitContext(DbContextOptions<ConduitContext> options) : DbContext(options)
 {
     private IDbContextTransaction? _currentTransaction;
 
-    public DbSet<Article> Articles { get; init; } = null!;
-    public DbSet<Comment> Comments { get; init; } = null!;
-    public DbSet<Person> Persons { get; init; } = null!;
-    public DbSet<Tag> Tags { get; init; } = null!;
-    public DbSet<ArticleTag> ArticleTags { get; init; } = null!;
-    public DbSet<ArticleFavorite> ArticleFavorites { get; init; } = null!;
-    public DbSet<FollowedPeople> FollowedPeople { get; init; } = null!;
+    public Microsoft.EntityFrameworkCore.DbSet<Article> Articles { get; init; } = null!;
+    public Microsoft.EntityFrameworkCore.DbSet<Comment> Comments { get; init; } = null!;
+    public Microsoft.EntityFrameworkCore.DbSet<Person> Persons { get; init; } = null!;
+    public Microsoft.EntityFrameworkCore.DbSet<Tag> Tags { get; init; } = null!;
+    public Microsoft.EntityFrameworkCore.DbSet<ArticleTag> ArticleTags { get; init; } = null!;
+    public Microsoft.EntityFrameworkCore.DbSet<ArticleFavorite> ArticleFavorites { get; init; } = null!;
+    public Microsoft.EntityFrameworkCore.DbSet<FollowedPeople> FollowedPeople { get; init; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -74,14 +74,14 @@ public class ConduitContext(DbContextOptions options) : DbContext(options)
     #region Transaction Handling
     public void BeginTransaction()
     {
-        if (_currentTransaction != null)
+        if (_currentTransaction is not null)
         {
             return;
         }
 
-        if (!Database.IsInMemory())
+        if (!this.Database.IsInMemory())
         {
-            _currentTransaction = Database.BeginTransaction(IsolationLevel.ReadCommitted);
+            _currentTransaction = this.Database.BeginTransaction(IsolationLevel.ReadCommitted);
         }
     }
 

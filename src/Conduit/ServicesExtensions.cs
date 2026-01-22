@@ -1,15 +1,10 @@
-using System;
 using System.Reflection;
-using System.Threading.Tasks;
 using Conduit.Features.Profiles;
 using Conduit.Infrastructure;
 using Conduit.Infrastructure.Security;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
@@ -22,13 +17,11 @@ public static class ServicesExtensions
     public static void AddConduit(this IServiceCollection services)
     {
         services.AddMediatR(cfg =>
-            cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly())
-        );
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
-        services.AddScoped(
-            typeof(IPipelineBehavior<,>),
-            typeof(DBContextTransactionPipelineBehavior<,>)
-        );
+        {
+            cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+            cfg.AddOpenBehavior(typeof(ValidationPipelineBehavior<,>));
+            cfg.AddOpenBehavior(typeof(DBContextTransactionPipelineBehavior<,>));
+        });
 
         services.AddValidatorsFromAssemblyContaining<Details.QueryValidator>();
 

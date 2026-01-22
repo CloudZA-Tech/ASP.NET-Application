@@ -1,5 +1,3 @@
-using System.Threading;
-using System.Threading.Tasks;
 using Conduit.Features.Profiles;
 using Conduit.Infrastructure.Security;
 using MediatR;
@@ -9,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Conduit.Features.Followers;
 
 [Route("profiles")]
-public class FollowersController(IMediator mediator) : Controller
+public class FollowersController(ISender mediator) : Controller
 {
     [HttpPost("{username}/follow")]
     [Authorize(AuthenticationSchemes = JwtIssuerOptions.Schemes)]

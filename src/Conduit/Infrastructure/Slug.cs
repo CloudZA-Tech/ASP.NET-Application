@@ -23,11 +23,11 @@ public static partial class Slug
     }
 
     [GeneratedRegex("[^a-z0-9\\s-]")]
-    private static partial Regex InvalidCharsRegex();
+    static partial Regex InvalidCharsRegex();
 
     [GeneratedRegex("\\s+")]
-    private static partial Regex MultipleSpacesRegex();
+    static partial Regex MultipleSpacesRegex();
 
     [GeneratedRegex("\\s")]
-    private static partial Regex TrimRegex();
+    static partial Regex TrimRegex();
 }

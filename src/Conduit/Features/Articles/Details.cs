@@ -1,9 +1,8 @@
 using System.Net;
-using System.Threading;
+
 using System.Threading.Tasks;
 using Conduit.Infrastructure;
 using Conduit.Infrastructure.Errors;
-using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,9 +12,11 @@ public class Details
 {
     public record Query(string Slug) : IRequest<ArticleEnvelope>;
 
-    public class QueryValidator : AbstractValidator<Query>
+    public class QueryValidator
     {
-        public QueryValidator() => RuleFor(x => x.Slug).NotNull().NotEmpty();
+        public QueryValidator()
+        {
+        }
     }
 
     public class QueryHandler(ConduitContext context) : IRequestHandler<Query, ArticleEnvelope>

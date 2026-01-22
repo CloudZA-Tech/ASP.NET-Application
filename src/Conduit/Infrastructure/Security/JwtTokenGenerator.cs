@@ -1,4 +1,3 @@
-using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.Extensions.Options;
@@ -13,10 +12,10 @@ public class JwtTokenGenerator(IOptions<JwtIssuerOptions> jwtOptions) : IJwtToke
     {
         var claims = new[]
         {
-            new Claim(JwtRegisteredClaimNames.Sub, username),
-            new Claim(JwtRegisteredClaimNames.Jti, _jwtOptions.JtiGenerator()),
+            new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub, username),
+            new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Jti, _jwtOptions.JtiGenerator()),
             new Claim(
-                JwtRegisteredClaimNames.Iat,
+                System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Iat,
                 new DateTimeOffset(_jwtOptions.IssuedAt).ToUnixTimeSeconds().ToString(),
                 ClaimValueTypes.Integer64
             ),
@@ -31,6 +30,6 @@ public class JwtTokenGenerator(IOptions<JwtIssuerOptions> jwtOptions) : IJwtToke
         );
 
         var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-        return encodedJwt;
+        return encodedJwt!;
     }
 }

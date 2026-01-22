@@ -1,14 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <OutputType>Exe</OutputType>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
-  
   <ItemGroup>
-    <PackageReference Include="Bullseye" />
-    <PackageReference Include="Glob" />
-    <PackageReference Include="SimpleExec" />
+    <PackageReference Include="Bullseye" Version="6.1.0" />
+    <PackageReference Include="Glob" Version="1.1.9" />
+    <PackageReference Include="SimpleExec" Version="13.0.0" />
   </ItemGroup>
 </Project>

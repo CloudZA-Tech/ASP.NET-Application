@@ -1,5 +1,4 @@
-using System;
-using System.Linq;
+
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,9 +23,9 @@ public class Create
     {
         public CommandValidator()
         {
-            RuleFor(x => x.User.Username).NotNull().NotEmpty();
-            RuleFor(x => x.User.Email).NotNull().NotEmpty();
-            RuleFor(x => x.User.Password).NotNull().NotEmpty();
+            this.RuleFor(x => x.User.Username).NotNull().NotEmpty();
+            this.RuleFor(x => x.User.Email).NotNull().NotEmpty();
+            this.RuleFor(x => x.User.Password).NotNull().NotEmpty();
         }
     }
 

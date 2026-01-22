@@ -1,4 +1,3 @@
-using System.Linq;
 using Conduit.Domain;
 using Microsoft.EntityFrameworkCore;
 

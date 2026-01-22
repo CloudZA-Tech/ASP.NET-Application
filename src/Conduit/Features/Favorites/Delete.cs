@@ -1,5 +1,5 @@
 using System.Net;
-using System.Threading;
+
 using System.Threading.Tasks;
 using Conduit.Features.Articles;
 using Conduit.Infrastructure;

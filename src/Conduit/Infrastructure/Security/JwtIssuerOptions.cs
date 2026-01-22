@@ -1,4 +1,3 @@
-using System;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Conduit.Infrastructure.Security;

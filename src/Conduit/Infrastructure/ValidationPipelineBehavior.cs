@@ -1,18 +1,14 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 
 namespace Conduit.Infrastructure;
 
 public class ValidationPipelineBehavior<TRequest, TResponse>(
-    IEnumerable<IValidator<TRequest>> validators
+    IEnumerable<FluentValidation.IValidator<TRequest>> validators
 ) : IPipelineBehavior<TRequest, TResponse>
     where TRequest : notnull
 {
-    private readonly List<IValidator<TRequest>> _validators = [.. validators];
+    private readonly List<FluentValidation.IValidator<TRequest>> _validators = [.. validators];
 
     public async Task<TResponse> Handle(
         TRequest request,
@@ -27,7 +23,7 @@ public class ValidationPipelineBehavior<TRequest, TResponse>(
             .Where(f => f != null)
             .ToList();
 
-        if (failures.Count != 0)
+        if (failures.Any())
         {
             throw new ValidationException(failures);
         }

@@ -1,15 +1,10 @@
-using System;
-using System.Linq;
 using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
 using AutoMapper;
 using Conduit.Infrastructure;
 using Conduit.Infrastructure.Errors;
 using Conduit.Infrastructure.Security;
 using FluentValidation;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Conduit.Features.Users;
 
@@ -28,9 +23,9 @@ public class Login
     {
         public CommandValidator()
         {
-            RuleFor(x => x.User).NotNull();
-            RuleFor(x => x.User.Email).NotNull().NotEmpty();
-            RuleFor(x => x.User.Password).NotNull().NotEmpty();
+            this.RuleFor(x => x.User).NotNull();
+            this.RuleFor(x => x.User.Email).NotNull().NotEmpty();
+            this.RuleFor(x => x.User.Password).NotNull().NotEmpty();
         }
     }
 

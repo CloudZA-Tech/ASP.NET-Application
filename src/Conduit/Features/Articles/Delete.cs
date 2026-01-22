@@ -1,9 +1,6 @@
 using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
 using Conduit.Infrastructure;
 using Conduit.Infrastructure.Errors;
-using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +10,7 @@ public class Delete
 {
     public record Command(string Slug) : IRequest;
 
-    public class CommandValidator : AbstractValidator<Command>
+    public class CommandValidator : FluentValidation.AbstractValidator<Command>
     {
         public CommandValidator() => RuleFor(x => x.Slug).NotNull().NotEmpty();
     }
@@ -34,7 +31,6 @@ public class Delete
 
             context.Articles.Remove(article);
             await context.SaveChangesAsync(cancellationToken);
-            await Task.FromResult(Unit.Value);
         }
     }
 }

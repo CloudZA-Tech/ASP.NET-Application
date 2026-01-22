@@ -1,4 +1,4 @@
-using System;
+
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,7 +17,7 @@ public class Create
 
     public record Command(Model Model, string Slug) : IRequest<CommentEnvelope>;
 
-    public record Model(CommentData Comment) : IRequest<CommentEnvelope>;
+    public record Model(CommentData Comment);
 
     public class CommandValidator : AbstractValidator<Command>
     {

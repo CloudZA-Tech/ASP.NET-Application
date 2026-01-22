@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
 using Conduit;
 using Conduit.Infrastructure;
 using Conduit.Infrastructure.Errors;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 // read database configuration (database provider + database connection) from environment variables

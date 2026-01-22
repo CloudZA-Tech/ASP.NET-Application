@@ -1,6 +1,4 @@
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using Conduit.Features.Articles;
 using Conduit.Infrastructure.Errors;
 using Conduit.IntegrationTests.Features.Users;
